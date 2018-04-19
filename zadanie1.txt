@@ -1,0 +1,34 @@
+FEATHER:
+    Sprawdzenie czy użytkownik codewars po wybraniu języka
+    programowania dostaje zadanie do wykonania i może doskonalić naukę języka programowania.
+BACKGROUND:
+    Given istnieje "użytkownik" mający dostęp do https://www.codewars.com
+    And istnieje możliwośc wyboru "języka programowania": 
+        |Języki     |         |
+        |Clojure    |
+        |C          |
+        |C++        |
+        |C#         |
+        |Crystal    |
+        |Dart       |
+        |Elixir     |
+        |F#         |
+        |Go         |
+        |Haskell    |
+        |Java       |
+        |JavaScript |
+        |PHP        |
+        |Python     |
+        |Ruby       |
+        |Rust       |
+        |Shell      |
+        |SQL        |
+        |Swift      |
+        |TypeScript |
+SCENARIO_1: Dostepność kursów
+    Given jestem na stronie https://www.codewars.com/users/sign_in
+    Then widzę, że istnieją języki programowania
+SCENARIO_2: Wybranie konkretnego języka programowania
+    Given jestem na stronie https://www.codewars.com/users/sign_in
+    When wybieram język Python
+    Then otwiera się interaktywny formularz z zadaniami do rozwiązania w języku Python

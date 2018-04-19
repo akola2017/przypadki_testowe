@@ -1,0 +1,25 @@
+FEATHER:
+    Mogę mieć wybraną tylko jedną opcję 
+
+BACKGROUND:
+    Given strona https://www.codecademy.com ma zakładkę "catalog"
+    And mam dostępne filtry:
+    |filtr      |opcje                          |
+    |język      |C, C#, Python                  |
+    |temat      |Full catalog, Web development  |
+    
+Scenario_outline: Jest możliwa tylko jedna opcja wyboru
+    Given jestem na stronie https://www.codecademy.com 
+    And wchodze na zakładkę Catalog
+    When na początku wybrałam <pierwszą_opcję>
+    But zmieniłam ja ma <druga_opcja>
+    Then <rezultat> jest wybrany
+    And mam wybraną tylko jedną opcję
+    
+    Examples:
+        |pierwsza_opcja     |drugi_wybór        |rezultat       |
+        |Python             |Python             |Python         |
+        |Full Catalog       |Java               |Java           |
+        |Web Development    |SQL                |SQL            |
+        |Ruby               |Programming        |Programming    |
+        |Bash/Shell         |Design             |Design         |

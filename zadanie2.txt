@@ -1,0 +1,27 @@
+FEATHER:
+    Sprawdzenie czy potencjalny klient apteki doz.pl ma możliwość zapisać się do
+    newslettera, aby być na bieżąco informowany na temat aktualnych promocji apteki
+
+BACKGROUND:
+    Given istnieje "użytkownik" który ma dostęp do strony doz.pl
+    And istnieje formularz 'Newsletter' zawierający pole
+        |nazwa              |typ        |
+        |wpisz swoj email   |string     |
+    And istnieje na formularzu przycisk "Zapisz się"
+
+SCENARIO: Sprawdzenie pól formularza
+    Given jestem na stronie www.doz.pl jako "użytkownik"
+    Then widzę pola "Wpisz swój email"
+    And widzę przycisk "Zapisz się"
+                                                                                                                                       
+SCENARIO_1: Wprowadzenie poprawnego adresu email
+    Given jestem zalogowana na stronie www.doz.pl jako "użytkownik"
+    When podaję w polu 'wpisz swój email' poprawny email
+    And wybieram przycisk 'zapisz się'
+    Then otwiera się nowy widok z komunikatem informującym o wysłaniu linka aktywacyjnego
+  
+SCENARIO_2: Nie wprowadzenie adresu email
+    Given jestem zalogowana na stronie www.doz.pl jako "użytkownik"
+    When nie wprowadzam wartości do pola "wpisz swój email"
+    And wybieram przycisk 'zapisz się'
+    Then pojawia się komunikat o treści “Formularz zawiera błędy. Sprawdź poprawność danych”

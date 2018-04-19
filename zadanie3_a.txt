@@ -1,0 +1,100 @@
+FEATHER:
+    Sprawdzenie czy użytkownik codeacademy ma dwie kategorie filtrów : język i temat. 
+
+BACKGROUND:
+    Given strona https://www.codecademy.com ma zakładkę catalog
+    And mam dostępne filtry:
+    |filtr      |opcje                          |
+    |język      |C, C#, Python                  |
+    |temat      |Full catalog, Web development  |
+    
+    
+ 
+SCENARIO: Dostępnośc filtrów z opcjami
+    Given jestem na stronie https://www.codecademy.com 
+    When wchodze na zakładkę Catalog
+    Then mam dostępne filtry z opcjami:
+    |filtr      |opcje                          |
+    |język      |C, C#, Python                  |
+    |temat      |Full catalog, Web development  |
+    
+
+SCENARIO_2: Wybór filtru język
+    Given jestem na stronie https://www.codecademy.com wyszukiwania w katalogu
+    Then otrzymuje kategorię filtrowania z następującymi opcjami "język" 
+
+    Examples:
+        |język              |
+        |HTML & CSS         |
+        |Python             |
+        |JavaScript         |
+        |Java               |
+        |SQL                |
+        |Bash/Shell         |
+        |Ruby               |
+
+
+SCENARIO_3: Wybór filtru temat
+    Given jestem na stronie https://www.codecademy.com wyszukiwania w katalogu
+    Then otrzymuje kategorię filtrowania z następującymi opcjami "temat" 
+
+    Examples:
+        |temat              |
+        |Full Catalog       |
+        |Web Development    |
+        |Programming        |
+        |Data Science       |
+        |Partnerships       |
+        |Design             |
+
+SCENARIO_OUTLINE_4: Wybór kilku filtrów równoczesnie
+    Given jestem na stronie https://www.codecademy.com wyszukiwania w katalogu
+    When wybrałam kategorie filtrowania z opcji <pierwszy_wybor>
+    And następnie wybrałam kategorię filtrowania z opcji <drugi_wybor>
+    Then otrzymuje wynik będacy filtrowaniem według opcji <rezultat>
+    and jest tylko mozliwy jeden wybór
+
+    Examples:
+        |pierwszy_wybór     |drugi_wybór        |rezultat       |
+        |Full Catalog       |Java               |Java           |
+        |Web Development    |SQL                |SQL            |
+        |Ruby               |Programming        |Programming    |
+        |Bash/Shell         |Design             |Design         |
+ 
+ 
+ scenariusze ponizej dac do nowego feather     
+  
+SCENARIO_5: Odznaczenie zaznaczonej opcji
+    Given jestem na stronie https://www.codecademy.com wyszukiwania w katalogu
+    When wybrałam rodzaj filtru <rodzaj> 
+    And wybieram ponownie rodzaj filtru <rodzaj>
+    Then ta sama opcja jest nadal wybrana, nie ma 
+
+    Examples:
+        |rodzaj             |
+        |Full Catalog       |
+        |Web Development    |
+        |Python             |
+        |SQL                |
+      
+SCENARIO_6: Domyślna opcja
+    Given jestem na stronie https://www.codecademy.com wyszukiwania w katalogu
+    Then domyślnie zaznaczona jest opcja wyszukiwania "Web Development"
+
+    w katalogu istnieja filtr język z następującymi pozycjami: 
+        |język              |
+        |HTML & CSS         |
+        |Python             |
+        |JavaScript         |
+        |Java               |
+        |SQL                |
+        |Bash/Shell         |
+        |Ruby               |
+    And w katalogu istnieja filtr temat z następującymi pozycjami:
+        |temat              |
+        |Full Catalog       |
+        |Web Development    |
+        |Programming        |
+        |Data Science       |
+        |Partnerships       |
+        |Design             |
